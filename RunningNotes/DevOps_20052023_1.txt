@@ -1,0 +1,97 @@
+
+
+Date : 20-05-2023
+DevOps with AWS
+Mr. RAGHU (AshokIT)
+-------------------
+*) Build with Parameters(Inputs to Job)
+To Provide details while running Job.
+Ex: Provide Branch Name, Provide Test case Executions..etc
+
+   key          default value
+
+BRANCH_NAME          main
+
+  User
+${BRANCH_NAME}
+
+String : Enter Manually.
+Choice : 
+
+*) Everytime we can not modify/configure Our jobs.
+   So, some details we need to pass while starting Job.
+
+===============================================
+developer - sam
+test / QA - ajay
+
+/home/ec2-user/myjobs
+
+
+Domain Specifi Language (DSL)
+A Programming technique to handle inputs/operations/controls
+over a tools using script/coding standards.
+
+=> A New Language only for specific software.
+
+--example scripted pipeline--------------
+node {
+  stage('clone') {
+	echo "From Git Cloning"
+  }
+  stage('Build') {
+	echo "From Maven Build"
+  }
+  stage('Quality Check') {
+	echo "From sonarqube"
+  }
+  stage('Artifactory') {
+	echo "Upload to Nexus"
+  }
+  stage('ContainerDeploy') {
+	echo "Deploying to Tomcat"
+  }
+
+}
+
+-------------------------------------
+Declarative Pipeline example:
+
+pipeline {
+   agent any
+
+   stages {
+   
+	stage('clone') {
+		steps {
+			echo "From Git Cloning"
+		}
+	}
+	stage('Build') {
+		steps {
+			echo "From Build"
+		}
+	}
+	stage('Quality Check') {
+		steps {
+			echo "Quality checking"
+		}
+	}
+	stage('Artifactory') {
+		steps {
+			echo "Upload to Nexus"
+		}
+	}
+	stage('ContainerDeploy') {
+		steps {
+			echo "Deploying to Tomcat"
+		}
+	}
+     }
+}
+
+------------------------
+agent : indicates where to run Job?
+-> none [run in master]
+-> label : node-1 [Run in Node-1 Agent]
+-> any : Choose which ever is free.
