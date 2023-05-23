@@ -1,0 +1,53 @@
+
+
+Date : 23-05-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+---------------------
+
+Declarative Pipeline 
+
+pipeline {
+  agent any
+
+  stages {
+
+	stage(' Name ') {
+		
+		steps {
+		
+		}
+	}
+
+  }
+
+}
+----------------------------------------------------
+Step#1 Create Multiple Instances for
+Jenkins, Tomcat, SonarQube, Nexus
+
+Ref: https://github.com/javabyraghu/EC2UserScripts
+
+Tomcat   : http://43.205.239.2:8080
+Jenkins  : http://15.206.166.187:8080
+SonarQube: http://65.2.80.230:9000
+Nexus    : http://3.110.219.126:8081
+
+Step#2 Add Plugins in Jenkins
+*) Setup Maven Path
+*) Follow Project-1 Guidelines
+
+SSH : Connect One EC2Machine using Remote Machine.
+SCP : Secure Copy (Copy files from one Linux Machine to Another)
+StrictHostKeyChecking=no : Do not ask permission (yes/no, default is YES)
+
+sshagent(['Tomcat-Logins']) {
+    sh "scp -o StrictHostKeyChecking=no  target/01-maven-web-app.war   ec2-user@43.205.239.2:/opt/tomcat/webapps/"
+}
+
+Step## Generate SonarToken
+  Token: 440ee69d95822fb69c8a4b4ba058eb4e6cb6aef6
+
+withSonarQubeEnv('Sonar-Server-7.8') {
+   sh "mvn sonar:sonar"
+}
