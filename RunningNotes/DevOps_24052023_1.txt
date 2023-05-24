@@ -1,0 +1,75 @@
+
+
+Date : 24-05-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-------------------------------------
+Ansible Tool:
+*) Initially Open Source.
+*) Now Part of RedHat
+*) Developed using Python
+*) Configuration can be done using YAML Files.
+*) IaC Tools for System Configuration.
+*) What we can do?
+ Install/Update/Remove Softwares(Git,Maven,Tomcat ..etc)
+ Start/Stop/Check Status of Services ( systemctl start/status/enable jenkins)
+ Copy files, configure them, move/rename..etc
+ find details of disk/network/memory/ram/os details..etc
+
+==============================================
+--Sample Details---
+
+Host Inventory File : Conatins Host Machines IP Address. 
+In Two way Grouped Nodes/Ungroup Nodes.
+
+192.168.10.12
+192.168.10.13
+
+[webservers]   <---Example Group name.
+192.168.10.14
+192.168.10.15
+myapp.com
+
+[dbservers]    <---Example Group name.
+192.168.10.16
+192.168.10.17
+
+Install tree s/w in every node (all)
+Install tomcat in webservers group.
+Install Jenkins only in "192.168.10.12"
+
+-> By default two types: all, ungrouped
+-> groups we need to create.
+
+----------------------------------
+Sample Playbook (.yml/.yaml)
+//where todo and what todo?
+
+---
+- host: webservers
+  tasks:
+    - name: install Git
+      yum:
+        name: git
+	state: latest
+    - name: Start Jenkins
+      service:
+         state: started
+
+- host: dbservers
+  tasks:
+    - name: install MySQL
+      yum:
+        name: mysql
+	state: latest
+    - name: Start MySQL
+      service:
+         state: started
+...
+
+Playbook is YAML file.
+It contains data/details in key: value format.
+Playbook is set of tasks (collection of works).
+Every task is created/defined using one Pre-defined Module.
+------------------------------------------------------------
+https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html
