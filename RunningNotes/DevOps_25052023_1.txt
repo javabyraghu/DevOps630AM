@@ -1,0 +1,153 @@
+
+Date : 25-05-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-------------------
+==================================
+Goto This link
+https://github.com/javabyraghu/ansible_playbooks_samples.git
+
+Open one by one YAML
+**Write with PEN and PAPER**
+Also type in lap/mac
+================================
+
+
+Step#1 Download VS Code Editor
+https://code.visualstudio.com/download
+
+Step#2 Install Software
+
+Step#3 Open VSCode
+-> Modifed Color Theme
+-> Font size 
+
+Step#4 Open a Folder (workspace)
+Ex: AnsibleYAMLs
+
+Step#5 Add one extension
+Search: YAML (Install-> Install)
+Close your VS Code and open again
+============================================
+YAML: 
+Yet Another Mark-up Language | YAMLAinant Mark-up Language
+
+-> Data follow format key:<space>value
+-> A key can have child(s) [parent/child]
+   Must follow spacebar rules. [maintain same space count for child key: vals]
+-> Collection/Array/List Data. (dash symbol - )  to represent multiple values for one key
+
+======Examples==================
+--first.yml---
+eid: 10
+ename: AJAY
+dept: DEV
+location: HYD
+org: Oracle
+------------
+
+--two.yml---
+eid: 10
+ename:
+  fname: AJAY
+  lname: KUMAR
+sal:
+  hra: 20000
+  ta: 400
+dept:
+  type: Developer
+  role: SSE
+  proj:
+    client: HMT
+    version: 3.2GA
+    bud: 35000
+--------------
+
+--list.yml---
+eid: 10
+ename: AJAY
+languages:
+  - ENG
+  - HIN
+  - TEL
+  - MAR
+depts:
+  - QA
+  - BA
+  - DEV
+----------
+
+Q1) Define one Student YAML file with below details(choose your own values)
+sid, sname, courses[multiple values], location(childs: name,pincode)
+[Key: vals can be in any order]
+
+---student.yml----
+sid: 10
+sname: AJAY
+courses:
+  - JAVA
+  - DEVOPS
+  - AWS
+  - ReactJS
+location:
+  name: HYD
+  pincode: 500032
+-----------------
+
+Q2) Define Product YAML file with below keys (choose your own values)
+pid, pcode, model(childs: type, name), colors[multiple values], vendor(child: fname,lname)
+
+product.yml
+-----------
+pid: 101
+pcode: PEN
+model:
+  type: ABC
+  name: MULTI-COLOR PEN
+colors:
+  - RED
+  - BLUE
+  - PINK
+vendor:
+  fname: AJAY
+  lname: KUMAR
+-------------
+
+Q3) Define multiple employee details (3 employees data)
+ Every employee should contain eid, ename, esal.
+
+---employees.yml---
+---
+- eid: 10
+  ename: AJAY
+  esal: 200.0
+
+- eid: 11
+  ename: SYED
+  esal: 300.0
+
+- eid: 12
+  ename: SAM
+  esal: 400.0  
+... 
+------------
+
+Q4) Define multiple products details (3 products data)
+ Every product should contain pid, pname, pcost.
+
+==products.yml========
+---
+- pid: 110
+  pname: AC
+  pcost: 12000
+
+- pid: 112
+  pname: TV
+  pcost: 13000
+
+- pid: 114
+  pname: LAPTOP
+  pcost: 14000  
+...  
+
+===========================

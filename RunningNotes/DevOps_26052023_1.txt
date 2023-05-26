@@ -1,0 +1,97 @@
+
+
+
+Date : 26-05-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+---------------------
+Ansible Setup: t2.micro [Free]
+
+Step#1 Create 3 or more EC2 Instances
+1 - Control Node (Ansible S/w Runs)
+2 - Managed Nodes [Our apps runs here]
+
+** SSH/22 Open Anywhere IPv4.
+
+Step#2 create a user : ansible/ansbile in all machines
+
+Step#3 Enable Password Authentication 
+
+Step#4 generate SSH Keys and Copy
+
+ssh-keygen
+
+ssh-copy-id  ansible@3.109.202.75
+
+ssh ansible@3.109.202.75
+
+Step#5 Install Ansible S/w
+Install Python first.
+Python PIP S/w
+
+# Install Ansible using Python PIP
+pip3 install ansible --user
+
+Step#6 Create Ansible CFG and Host inventory file
+https://github.com/ansible/ansible/blob/stable-2.9/examples/ansible.cfg
+
+*) test using:
+ansible all -m ping
+
+========================================================================
+1. ANSIBLE AD-HOC COMMANDS
+2. ANSIBLE PLAYBOOK
+
+Modules: [-m]
+ping  : To check active connection between Control and Managed Nodes
+shell : To execute any shell command at managed Nodes
+yum / apt : To install/un-install/update any Software at managed Nodes
+[name , state=present/absent/latest]
+  present- install
+  absent-un-install
+  latest- upgrade
+service: start, stop, restart, enable ..etc
+
+=====================================================
+ansible  <WHERE TO EXECUTE>                     <WHAT TO EXECUTE>
+ansible [all/ungrouped/any GroupName/any IP] -b  -m <moduleName> -a <Arguments>
+
+-b : become (adding sudo to command)
+
+ansible all -m ping
+ansible ungrouped -m ping
+ansible webservers -m ping
+ansible dbservers -m ping
+ansible 172.31.5.99 -m ping
+
+------------------------------------------
+ansible all -m shell -a 'date'  
+ansible all -m shell -a 'echo "welcome" > ~/data.txt'  
+
+systemctl restart sshd
+service sshd restart
+
+ansible all  -m shell -a 'service sshd restart'  
+ansible all -b -m shell -a 'yum install maven'
+
+ansible all -b -m yum -a 'name=maven state=present'
+ansible all -b -m yum -a 'name=maven state=absent'
+
+ansible all -m yum -b -a 'name=git state=present'
+ansible all -m yum -b -a 'name=git state=absent'
+
+ansible all -b -m yum -a 'name=httpd'
+ansible all -b -m service -a 'name=httpd state=started'
+================================================================
+=> systectl start jenkins
+ansible all -b -m service -a 'name=jenkins state=started'
+=> systectl stop jenkins
+ansible all -b -m service -a 'name=jenkins state=stopped'
+
+================================================================
+Task: Write some adhoc commands
+1. Copy sample.txt file from Control nodes to all Host Nodes
+2. Delete A file [data.txt] at Managed nodes
+3. Install Java 11 at Managed nodes
+4. Enable sshd service at Managed nodes
+5. Install tree software at Managed nodes
