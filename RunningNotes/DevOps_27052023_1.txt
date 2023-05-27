@@ -1,0 +1,76 @@
+
+
+Date : 27-05-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-----------------------
+YAML File rules:
+
+# must provide one space before value.
+1. key:<space>value
+
+# provide tab space/at least one space for childKey
+2. Parentkey:               
+     childKey:<space>Value 
+
+3. If one key conatins "Collection/List/Array" use symbol <space>(optional)dash<space><value>
+ Key:
+ - value1
+ - value2
+ - value3
+
+4. Want to Repeate from parent key
+--- use 3 dash symbols
+
+===================================================================================
+Solution:
+ssh-copy-id  ansible@PrivateIPOfNode
+ssh ansible@PrivateIPOfNode
+Yes
+===================================================================================
+Play : A task(s) what you want to do at remote/Host machine
+Playbook: Collection of Plays in one YAML file
+
+sudo = Acts like a Super user / Root User.
+
+
+# Playbook Basics
+# Playbook Basics
+---
+- name: This is my sample playbook # your description
+  hosts: all # or give any group details
+  become: true ## add sudo for commands
+  gather_facts: false ## or no to skip facts collections
+  tasks:
+    - name: Create a File
+
+    - name: Install a S/w
+
+    - name: Start service
+
+    - name: Append some data
+
+    - name: Change file permissions
+
+    - name: modify user and groups details
+================================================================================
+To execute playbook:
+$ ansible-playbook <filename>.yml
+Ex:
+$ ansible-playbook 01ping.yml
+
+Note: 
+1. gather_facts: default is true/yes. It means executed everytime.
+2. Execute Syntax check incase of any issues/errors
+  ansible-playbook <filename>.yml --syntax-check
+3. Incase of any issues faced while executing a playbook then
+  ansible-playbook <filename>.yml -vvv
+4. Use --check for dryrun (Dummy execution to see sample output)
+
+
+blockinfile: is used to add/modify data to a file
+It takes two things,
+I. Location of file(path)
+II. data of file (block)
+-------------------------------------------------
+ansible_pkg_mgr can be apt(ubuntu), yum(RedHat,CentOS), dnf(Fedora/Amazon Linux)..etc
