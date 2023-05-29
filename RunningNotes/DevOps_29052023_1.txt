@@ -1,0 +1,41 @@
+
+Date : 29-05-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+------------------------
+YAML Files
+Ansible Setup
+Playbooks
+
+================================
+*) When ever we execute any shell command, OS returns Zero or non-Zero Code.
+non ZERO indicates Error , here Success means return code is ZERO.
+
+command -> Execute -> Output(Error-> returns non ZERO/Success -> return code is ZERO)
+
+git --version => Return Non Zero , git is not present, then install.
+
+Note:
+1. /home/ansible => ~ => Current user Home Directory.
+2. If we use become: true and ~ symbol for path then also specify become_user: ansible
+3. cat > index.html
+   <h1> WELCOME TO ANSIBLE PLAYBOOK </h1>
+
+---------------------------
+service:
+  name: <any service name>
+  state: started | stopped | restarted
+  enabled: true | false [makes service enable to start on OS restart]
+
+jenkins- start | enable [ even starts service after Machine restart]
+Linux Machine Restarted
+jennkins-current state: stop
+jenkins - start
+==============================================================
+Variables and Loops(7,10)
+
+File
+Service
+Package(yum/apt)
+Copy
+User
