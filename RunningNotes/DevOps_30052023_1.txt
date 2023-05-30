@@ -1,0 +1,79 @@
+
+
+Date : 30-05-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-------------------
+*) We can install any package (or S/w) using Package Manager Condition or OS type based.
+
+ansible_pkg_mgr == 'apt'  (or) ansible_os_family == 'Debian'
+ansible_pkg_mgr == 'yum'  (or) ansible_os_family == 'RedHat'
+ansible_pkg_mgr == 'homebrew' (or) ansible_os_family == 'Mac'
+
+-------------------------------------------------------------------
+Variables: 
+-> To hold data ( Name: Data format )
+-> Used at multiple places.
+-> Easy to modify values at multiple places.
+-> Provide data from external sources / runtime (while running Playbook)
+
+
+vars:
+ my_sw_name: git
+ new_version: 2.4
+ auther_name: RAGHU
+
+- name: Install s/w
+  yum:
+    name: "{{ my_sw_name }}"   ## Syntax :   {{  variable_name  }}
+    state: present
+  
+- name: Uninstall 
+  yum
+    name: "{{ my_sw_name }}"
+    state: absent
+
+*) Note:
+1. We can pass variables to Playbooks while executing it with same command, using attribute
+	--extra-vars variable="value" (Also called as Dynamic Passing)
+
+  ansible-playbook 10LocalVars.yml --extra-vars my_pkg_name="httpd"
+
+===========================================
+Loops New Syntax:
+
+---
+- hosts: all
+  become: true
+  vars:
+    mypkgs:
+      - unzip
+      - wget
+      - tree
+      - httpd
+      - mysql
+  tasks:
+    - name: Install Httpd
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ mypkgs }}"
+
+Loops Old Syntax:
+---
+- hosts: all
+  become: true
+  vars:
+    mypkgs:
+      - unzip
+      - wget
+      - tree
+      - httpd
+      - mysql
+  tasks:
+    - name: Install Httpd
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ mypkgs }}"
+
