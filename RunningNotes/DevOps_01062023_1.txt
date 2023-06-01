@@ -1,0 +1,34 @@
+
+
+Date : 01-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+------------------------
+Ansible-Playbook References:
+https://github.com/javabyraghu/ansible_playbooks
+
+
+Tags - used for grouping tasks,
+       this is used to provide labels
+       this is for selecting tasks/skipping tasks for execution.
+
+## Execute all tasks
+$ ansible-playbook apps-test.yml 
+
+## Execute tasks only having copy tag
+$ ansible-playbook apps-test.yml --tags "copy" 
+
+## Execute tasks only having install,copy tags
+$ ansible-playbook apps-test.yml --tags "install,copy" 
+
+## Skip tasks having install tag
+$ ansible-playbook apps-test.yml --skip-tags "install" 
+
+1. I have a plybook to install httpd and copy file.
+   That contains handlers for start on install changed and restart on copy changed.
+   2nd time onwards we need to execute a playbook only copy task.
+   Do not execute install task.
+   For this what is the command?
+
+$ ansible-playbook HandlersTest.yml --tags "copy"
+$ ansible-playbook HandlersTest.yml --skip-tags "install"
