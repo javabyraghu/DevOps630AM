@@ -1,0 +1,44 @@
+
+
+Date : 02-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-------------------
+# Location : /etc/ansible/roles/
+
+$ ansible-galaxy init <role_name>
+$ ansible-galaxy init jenkins
+
+jenkins/
+|-vars/
+   main.yml
+|-tasks/
+   main.yml
+|-handlers/
+   main.yml
+|-files/
+|-templates/
+
+
+/vars
+  main.yml
+    tomcat.foldername: apache-tomcat-7.0.76
+    username: tomcat
+    group: tomcat
+
+/templates
+  /tomcat.service.j2
+	  [Unit]
+          Description = Apache Tomcat 7
+          After = syslog.target network.target
+          [Service]
+          User = {{ tomcat.user }}
+          Group = {{  tomcat.group}}
+          Type = oneshot
+          PIDFile =/usr/local/{{ tomcat.foldername }}/tomcat.pid
+          RemainAfterExit = yes
+          ExecStart =/usr/local/{{ tomcat.foldername }}/bin/startup.sh
+          ExecStop =/usr/local/{{ tomcat.foldername }}/bin/shutdown.sh
+          ExecReStart =/usr/local/{{ tomcat.foldername }}/bin/shutdown.sh;/usr/local/{{ tomcat.foldername }}/bin/startup.sh
+          [Install]
+          WantedBy = multi-user.target
