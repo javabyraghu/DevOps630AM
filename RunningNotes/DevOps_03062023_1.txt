@@ -1,0 +1,51 @@
+
+
+Date : 03-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+--------------------
+
+Java, Git, Jenkins ...etc
+Tomcat, MySQL, Run Our App (.war/.jar/.py/.dll..etc)
+
+
+Docker Image = Application [Code] (.war) + Dependencies (JRE/Tomcat/MySQL ..etc)
+
+VIRTUALIZATION: Share Hardware to install Multiple-OS, then install s/w and run apps.
+
+CONTAINERIZATION: Install s/w, run app --> independent of OS
+
+Docker: is a CONTAINERIZATION platform.
+
+Dockerfile: Set of Instructions (apps details, Dependencies details) to create Image.
+
+Docker Image: Docker understandable software (Dockerfile->build-> Image)
+
+Docker Container: 
+     Run Image (one time/multiple times)-->Running Instance is called Container
+
+
+Create one Account Here:
+https://hub.docker.com/
+
+docker images -> to view all images
+docker ps     -> to view running containers
+docker ps -a  -> to view all(running/stopped) containers
+docker pull   -> To fetch/pull image from Register
+docker run    -> To create a container from image
+
+docker system prune -a => To reset docker deamon (Clear all objects)
+
+Note: If we try to run an image which is not present in our local machine
+  (Docker Deamon) then docker run command will "pull first and run next"
+
+docker rm  -> to delete container
+ex: docker rm <container-id>
+docker rmi -> to delete image
+ex: docker rmi hello-world
+
+docker stop <container-id>
+docker start <container-id>
+
+
+Dockerfile 
