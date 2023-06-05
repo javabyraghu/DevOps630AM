@@ -1,0 +1,64 @@
+
+
+Date : 05-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+----------------------------
+Dockerfile is recomanded to keep along with Source Code
+GitHub-> Repository => Code + Dockerfile
+
+Java Image(Exist) -> New Spring Boot application
+Python Image (Exist) ->  New Flask Application
+Tomcat Image (Exist) -> Servlets, JSP Web Application
+
+# Base Image
+FROM openjdk:11
+FROM python3
+FROM nodejs:2.1
+
+COPY target/app.war  /ect/tomcat/webapps/
+ADD  http://sources.com/myapp.war /ect/tomcat/webapps/
+
+WORKDIR  /opt/setup
+ENV   $branch = main
+
+# Recomanded to Run (For Documentation only)
+EXPOSE 8080
+EXPOSE 9090
+
+$ java -jar MyApp.war
+$ py sample.py
+============================================
+FROM java:8
+FROM tomcat:9
+FROM flask:latest
+
+MAINTAINER  NAME <email>
+
+COPY /opt/myconf/setup.config  /etc/tomcat/conf/setup.config
+
+RUN date
+RUN cat hello.txt
+RUN yum install git 
+RUN yum install maven
+
+RUN echo "A"
+RUN echo "B"
+RUN echo "C"
+
+CMD echo "A"
+CMD echo "B"
+CMD echo "C"
+
+--------------------------------
+docker build -t <image-name> -f <docker-filename-with-location>
+ex:
+docker build -t my-test-img .
+
+docker build -t my-test-img -f docker-file
+docker build -t my-test-img -f /home/docker/data/docker-file
+
+--------------------------------------------
+docker pull javabyraghu/myfirstimg
+
+tag name is like = username/imagename:version  (default version is latest)
