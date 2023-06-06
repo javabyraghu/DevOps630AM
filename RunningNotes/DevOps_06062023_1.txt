@@ -1,0 +1,64 @@
+
+
+
+Date : 06-06-2023
+DevOps and AWS
+Mr. RAGHU
+------------------
+
+Start Application
+C/C++/Jav/.Net => Main() method
+
+ENTRYPOINT : Execution point of application
+> java MainClass
+> java -jar app.jar
+
+*) One Dockerfile contains only one ENTRYPOINT.
+
+CMD "echo 'A'"
+CMD "echo 'B'"
+CMD "echo 'C'"
+
+ENTRYPOINT ["echo","A"]
+ENTRYPOINT ["echo","B"] //invalid
+
+--------------------------------
+ENV mvn  /opt/maven/bin
+ENV java /etc/apps/java
+ENV tomcat /etc/tomcat/
+
+-------------------------------
+RUN "git clone -b main http://github.com/javabyraghu/app.git"
+
+RUN "git clone -b $MY_BRANCH http://github.com/javabyraghu/app.git"
+
+docker build -t my-app --build-arg MY_BRANCH=main
+-------------------------------
+id=10 // hardcoded
+id=$MY_VAL //dynamic value
+----------------
+RUN "A"
+USER tomcat
+CMD "B"
+RUN "C"
+-------------------------
+OS - Unique number to identify service ie called as Port.
+possible ports: 0-65535
+0-1024 are called as reserved ports.
+
+*) in One OS/Machine, we can not run 2 services using same port.
+Jenkins: 8080 , then Tomcat: 8081.
+
+------------------------------------------------
+# This is used only for Documentation.
+EXPOSE  8080
+
+
+============================================================
+Web Applications -> Spring Boot Framework (Java F/w)
+Code + Server (Embedded Tomcat /No Download and No Install of Tomcat)
+
+Application -> .jar -> Run (Bcoz of Embedded Tomcat)
+Application -> .war -> Run (For External Tomcat)
+-------------------------------------------------------------
+
