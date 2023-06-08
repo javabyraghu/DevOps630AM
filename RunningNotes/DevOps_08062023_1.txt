@@ -1,0 +1,39 @@
+
+
+Date : 08-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-------------------
+Docker networking, volumes, swarm..etc
+
+1. By default containers are created in isolated manner.
+2. If one container wants to connect with another container,
+  then they must be in one/same network.
+
+docker run -d -p hostPort:containerPort  imageName --network=<yourNwName>
+
+swarm = group.
+
+*) Bridge : Connect selected container (c1-c2-c3 : bridge-1)
+*) Host : Connect all containers with Host Network.
+*) Overlay : Connect multiple docker machines
+*) Macvlan:  container gets one MAC address
+*) NONE/null : Container can not connect with other containers.
+
+--------------------------------------------------------------------
+Q) How can we find what are containers connected to a network?
+A) docker network inspect NETWORK-ID > containers {}
+
+prune = remove un-used / not-connected
+
+--Containers are stateless-----
+*) If containers re-created (Web-App:1.0, Web-App:1.1) data is lost.
+------------------------------
+
+persist = store data for a period of time (creation/destroy)
+
+-------------------------------------------------------------------------
+Environment variable for MySQL: username=root  -e MYSQL_ROOT_PASSWORD=root  -v volumeName:MySQLPathInContainer
+
+
+docker run -d --name=mysql1 -e MYSQL_ROOT_PASSWORD=root -v mysql_data:/var/lib/mysql  mysql
