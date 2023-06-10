@@ -1,0 +1,31 @@
+
+
+Date : 09-06-2023
+DevOps and AWS
+Mr. RAGHU
+---------------------
+Dockerfile : Contains instructions to create an Image
+FROM
+EXPOSE
+CMD
+RUN
+ENTRYPOINT
+
+DockerImage : Packaged Software (Code + Dependencies)
+DockerHub(Register) : A Place to store Docker Images
+DockerContainer : Running/Execution form of Image
+DockertNetwork  : Connection between container.
+DockerVolumes   : Persisted Storage to share data between containers.
+----------------------------------------------------------------------
+Docker Compose: 
+-> It is a YAML file
+-> To create and connect multiple containers.
+-> It avoids executing multiple docker commands.
+-> You can even define order of creating containers.
+-> We can provide network creation,connections.
+-> We can even specify volums to be created and connected.
+
+-> using 'docker-compose up' docker creates all above setup.
+   using 'docker-compose down' docker remvoes all above setup (not volumes)
+
+file name: docker-compose.yml.   

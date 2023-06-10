@@ -1,0 +1,30 @@
+
+
+Date : 10-06-2023
+DevOps and AWS
+Mr. RAGHU
+---------------------------
+
+Application Development Designs:-
+1. Monolithic 
+Everything in one application
+
+2. Microservices
+=> Every small service is one application.
+=> So, there will be multiple docker containers are created.
+  Bcoz of so many users/customers..etc
+
+=> Better always create multiple container in multiple machines
+  (for backup) High Availability.
+--------------------------------------------------------------------------
+SWARM = Group of Docker Machines or a Docker cluster.
+
+orchestration = manage a cluster => create, scale up/down, upgrade(latest versions),
+		rollback (come back to old versions), destroy, loadbalance.
+
+
+If you do not want to add sudo everytime for docker commands
+then execute below
+$ sudo usermod -aG docker $USER
+$ exit
+Then press R 
