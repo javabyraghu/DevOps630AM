@@ -1,0 +1,76 @@
+
+Date : 12-06-2023
+DevOps and AWS
+Mr. RAGHU(AshokIT)
+-------------------
+1. Microservices : Independent deployable components.
+Every small service -> 1 Application -> Docker Image
+
+2. orchestration: Manage multiple containers.
+ ie create, scale, delete, upgrade, moniter containers...
+
+3. scalable = scale up/down -> increase/decrease containers..
+
+4. resilient = maintain errors/issues..
+
+https://kubernetes.io/
+
+5. k8s is a orchestration, implemented using Go Lang.
+	Maintained by CNCF
+
+6. container runtime s/w : docker, crio, rkt(rocket).
+
+=> k8s is a orchestration tool, not a container management tool.
+
+Pod : it is a abstration over container.
+
+Pod : multiple container but not same type.
+	Serach-Container + LogContainer + Security Conatiner
+	ActualContainer + Helper containers.
+
+Why Pod?
+Independent of container technology.
+Hold multiple containers.
+
+Where our containers/pods are running?
+Worker Nodes/ Child Nodes.
+
+7. Every Worker node contains one agent.
+   This agent s/w is called as Kubelet.
+   It will connect with master/control plane to get the work.
+
+8. KubeProxy manages Networking within Cluster.
+   It helps cluster to create, manage networking, request,
+   load balance..etc
+
+
+9. etcd : It is a key-val based storage.
+  Contains Cluster data, like no.of worker nodes, pods, namespaces,
+  volumes.. etc
+
+10. API Server- Central point to handle request and connect all other
+		components
+
+11. Controller-Manager: Does actual work.
+
+12. Scheduler: check the current state and compare with expected
+	state and tell what is missing, and what todo to API Server.
+
+ex: Hey! API Server, Create container-05 at WorkerNode-03.
+
+13. Kubectl : Command Line Interface tool, 
+	to communicate with Controlplane.
+
+====================================================================
+Minikube -1 node cluster
+--------------------------
+Kubeadm - n node cluster
+[Manual Installation of Master, Worker nodes ]
+--------------------------
+Cloud
+EKS : Elastic Kubernetes service
+AKS, GKS
+
+Master - Cloud will take care
+worker nodes - DevOps Eng.
+---------------------------
