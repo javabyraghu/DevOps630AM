@@ -1,0 +1,38 @@
+
+
+Date : 14-06-2023
+DevOps and AWS
+Mr. RAGHU (ASHOKIT)
+------------------------
+Kubeadm setup using AWS EC2 Instances
+OS: Ubuntun 20.04 LTS
+Type: t3.medium
+No.of Instances: 3 (1 Master , 2 Worker)
+
+
+Note:
+Generate Token at master node using command
+$ kubeadm token create --print-join-command
+
+Add sudo before generated token command and execute at worker nodes
+$ sudo kubeadm join 172.31.12.44:6443 --token tmemf8.wg997faj33zbjv65 --discovery-token-ca-cert-hash sha256:6375f78f2cba3b35b9d1f7f52c48aae70db8c91b3299b7e084a25a1cbc020545
+
+Task create 10 pods for one image
+
+$ kubectl run my-pod-01 --image nginx
+$ kubectl run my-pod-02 --image nginx
+$ kubectl run my-pod-03 --image nginx
+$ kubectl run my-pod-04 --image nginx
+$ kubectl run my-pod-05 --image nginx
+$ kubectl run my-pod-06 --image nginx
+$ kubectl run my-pod-07 --image nginx
+$ kubectl run my-pod-08 --image nginx
+$ kubectl run my-pod-09 --image nginx
+$ kubectl run my-pod-10 --image nginx
+
+*) labels are used to select/link one with another object.
+ie Pod with ReplicaSet, RS with Deployment.
+
+*) in this case pods are created using ReplicaSet name with hash(Random value)
+
+$ kubectl scale replicaset my-test-rs --replicas=4

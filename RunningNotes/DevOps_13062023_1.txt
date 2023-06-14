@@ -1,0 +1,47 @@
+
+
+Date : 13-06-2023
+DevOps and AWS
+Mr. RAGHU(ASHOKIT)
+--------------------
+Container Runtime:-
+cri-o, rkt, docker, containerd
+..etc
+
+------------------------
+Objects in K8s:-
+Pod : 1 or n container.
+
+Amazon Application Microservice design
+Search.war -> Docker Image -> DockerHub -> K8s [SearchPod]
+Payment.war (otp.war) -> 2 Docker images-> DockerHub -> k8s 
+  [PaymentPod --> PaymentContainer + OTP Container]
+
+
+1) By using command (kubectl run)
+2) By using YAML Configuration
+
+
+Minikube: 1 Node Cluster - Test/dev work.
+Kubeadm: 1 Master + n-worker.
+
+AWS** - EKS : Elastic Kubernetes Service
+Microsoft AKS
+Google GKS
+===============================================
+1. Create a new POD
+$ kubectl run <pod-name> --image <image-name> --port <container-port>
+
+$ kubectl run my-pod --image nginx --port 80
+
+ErrImagePull: It indicates given image is not present in local machine
+and Registery.
+
+2. create using YAML file
+$ kubectl create -f <filename>.yml
+
+# creat if not exist, else modify based on new file
+$ kubectl apply -f <filename>.yml
+
+3. View issues/events
+$ kubectl describe pod <pod-name>
