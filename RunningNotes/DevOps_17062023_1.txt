@@ -1,0 +1,28 @@
+
+
+Date : 17-06-2023
+DevOps and AWS
+Mr. RAGHU(ASHOKIT)
+-----------------------
+k8s :
+-> orchestration  : group of container machines
+-> CNCF
+-> Control Plane/Master Node, Worker Node
+-> POD (1-n container).
+
+==========================================
+Deployment:
+ It is a supertype process over ReplicaSet.
+It even manages deployment process like: 
+ update, rollback, pause, history, revise..etc
+
+-> downtime: A period where application is not acceable (or serverdown)
+   for end-customers.
+
+
+Use:
+https://kubernetes.io/docs/home/
+Enter topic and search
+
+Ref:
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
