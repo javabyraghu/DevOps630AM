@@ -1,0 +1,55 @@
+
+
+Date : 19-06-2023
+DevOps and AWS
+Mr. RAGHU
+--------------------
+Deployment = ReplicaSet + Updates (upgrade to a new version,
+                   rollback to older version, stop changing version,
+		   allow version update, view all history)
+
+Types:
+1. Recreate : Delete all olds pods first and 
+		then create new pods all at time
+
+2. RollingUpdate: Replace POD by POD with versions.
+
+
+*) deployment in general, run application with fullsetup.
+ex: FrontEnd + Backend + Database ..etc
+
+Every Deployment internally even creates one Replicaset and internally
+that creates Pods.
+
+# Tip:
+kubectl create rs --help
+kubectl create deploy --help
+
+Ex:
+kubectl create deployment my-test-deploy --image nginx --replicas 3
+
+*) kubectl edit <resource> : to edit its configuration using internal YAML file
+
+
+Q) What is dry-run in k8s?
+A) I want to see generated YAML file content for a command,
+   but it should not be executed in Cluster.
+
+Add --dry-run (--dry-run=client)
+
+$ kubectl create deploy test-deploy --image nginx --replicas 3 -o yaml --dry-run=client > test.yml 
+$ kubectl run nginx --image=nginx --port=80 -o yaml --dry-run=client > pod-test.yml
+
+==task======
+# create one deployment
+kubectl create deploy my-deployment --image nginx --replicas 3
+
+# View status
+kubectl rollout status deployment my-deployment
+
+# Edit Image version
+kubectl edit deploy my-deployment
+=> image nginx:1.23 (:wq)
+
+# View status
+kubectl rollout status deployment my-deployment
