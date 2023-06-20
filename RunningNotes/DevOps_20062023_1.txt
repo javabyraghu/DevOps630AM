@@ -1,0 +1,44 @@
+
+
+Date : 20-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+----------------------------
+Pod (po)
+ReplicaSet (rs)
+Deployment (deploy)
+Services (svc)
+
+1. Cluster contains many PODs
+2. Every POD contains IP and PORT
+3. If PODs are re-created (Bcoz of Deployment/RS)
+   then new IPs are assigned by k8s.
+ex: v1.34 -> v1.37
+
+4. In realtime, PODs are connected for communication.
+  So, using POD IPs is not a good choice to connect them.
+
+5. Use service concept to connect with PODs.
+   Services are used to expose POD communication.
+
+To get URL:
+$ kubectl get po -o wide
+check Node IP (Private and compare with AWS Private IP)
+Copy Matching Node PublicIP
+http://43.205.122.128:31874/maven-web-app
+
+get port number
+$ kubectl get svc
+:31874
+--------------------------------------
+http://43.205.122.128:31874/maven-web-app/
+http://52.66.220.64:31874/maven-web-app/
+
+Delete all pods, services, deployments...etc (Resources)
+$ kubectl delete all --all
+
+View all Resources(Pod, Deployment, service ..etc) from given namespace
+
+$ kubectl get all --namespace my-bank
+$ kubectl get all -n my-bank
+
