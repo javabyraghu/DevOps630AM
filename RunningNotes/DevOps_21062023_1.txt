@@ -1,0 +1,112 @@
+
+
+Date : 21-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-----------------------
+K8s Cluster
+Resources
+ Pod
+ ReplicaSet
+ Deployment
+ Services
+ Namespace
+
+ ConfigMap and Secret
+
+-----------------------------
+Developers write application with different concepts
+like Database Setup, Cache, Email, SMS, .... key=val
+
+Example file: spring boot => application.properties
+
+*) If values are modified in properties, we need to 
+  re-do entire process (code->Git->Maven->Artifact->Docker->Hub->k8S)
+
+*) k8s provided a concept
+  ConfigMap (Map -> key=val) = Contains general key=val
+  Secret (Map -> key=val) = Secure words : Password, token, APIKeys..etc
+
+*) Developer has to give key=val details to DevOps Team to create
+  and link ConfigMap with Deployment/Pod.
+
+Q) Why ConfigMap and Secret?
+A) If we use this no Re-Build process is required.
+   only a simple Re-start is fine.
+
+$ kubectl create configmap test-cm --from-literal=key1=val1 --from-literal=key2=val2
+
+Q) How can we create a ConfigMap using existed properties file?
+A)
+  $ kubectl create configmap props-cm --from-file=application.properties
+
+--------------------------------
+echo "hello" | base64
+echo "aGVsbG8K" | base64 --decode
+
+env:
+   - name:
+     valueFrom:
+     	secretKeyRef:
+	   name:
+	   key: 
+
+---EXAMPLE---------
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  MY_DRIVER_URL: OracleDriver
+  MY_DATABASE_NAME: smdb
+-------------
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secrets
+type: Opaque
+data:
+  username: YWRtaW4K
+  password: UmFnaHVAMTIzNAo=
+-------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp-container
+          image: myapp:latest
+          env:
+            - name: APP_DRIVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: MY_DRIVER_URL
+            - name: APP_DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: MY_DATABASE_NAME
+            - name: APP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: my-secrets
+                  key: username
+===============================================
+task: Create A MySQL Pod using Secret Example
+===============================================
+
+Q) What is stateful and stateless (what is mean by state)?
+A)
+
+Post in whatsapp group
