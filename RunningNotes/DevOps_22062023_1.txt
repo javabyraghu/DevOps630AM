@@ -1,0 +1,41 @@
+
+
+Date : 22-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+----------------------
+Volume : Storage (FileSystem/Database) -- (SSD/HDD)
+
+Enter into Pod (Enter into Primary Container)
+$ kubectl exec -it <pod-name> -- /bin/bash
+
+*) Pods are re-created in realtime.
+(Upgrade/updates of code, new deployments..)
+*) Pods are ephemeral.
+
+*) Persistent Volumes = Long time Storage.
+
+=================================================
+1. PV's are created outside of all namespaces (True)
+[to share with all Pods in every namespace]
+2. PV's creates physical storage (True)
+3. PV's are created by DevOps/Developers/Users (False)
+4. PVC means using PV, ie connect Pod and Volume (True)
+
+5. ReadWriteOnce - Means Only current Node Can read/write data (True)
+6. ReadOnlyMany - Means all Nodes can read data, but not allowed to write
+	(true)
+7. ReadWriteMany - Means all nodes not allowed to read/write data(False)
+8. Storage class Means allocate data dynamically if it is not exist(True)
+
+9. ReadOnlyMany - Current node, can write data (False).
+
+*)Hint: Mix : ReadWriteOnce, ReadOnlyMany. 
+
+10. Reclaim Policy- Delete (Delete full volume),
+	Retain - Keep volume even after delete PV
+	Recycle - Keep volume even after Delete PV (but empty volume)
+	[true]
+---------------------
+Q) What is the diff b/w 1G and 1Gi?
+A) 
