@@ -1,0 +1,14 @@
+
+Date : 23-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-------------------
+Volume : Storage
+
+PV and PVC helps to keep data even after re-creating pod.
+
+*) MySQL Runs on port : 3306
+
+$ kubectl get po
+$ kubectl exec -it <pod-name> -- bash
+
