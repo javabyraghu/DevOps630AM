@@ -1,0 +1,60 @@
+
+
+Date : 24-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+--------------------
+*) Issue: (Bug found in minikube)
+We get a default storage class, delete that 
+$ kubectl delete sc standard
+
+# Connect into pod/container
+$ kubectl exec -it mysql-deployment-64b447589-r9gcq -- bash
+
+# login into MySQL
+$ mysql -h mysql-service -u root -p
+Enter password:
+
+mysql> create database sbms;
+mysql> use sbms;
+mysql> show tables;
+mysql> create table users(uid int, uname varchar(10));
+mysql> insert into users values(10,'A');
+mysql> insert into users values(11,'B');
+mysql> select * from users;
+
+# delete current pod
+-----------------------------
+Any issues while re-creating deployments, do this:
+(like Error, Pending, crashloopbackoff)
+
+minikube stop
+minikube delete
+docker system prune --all
+sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
+docker volume ls
+(if exist any delete) -> docker volume rm <volume-name>
+minikube start
+-----------------------------
+Stateless : If pod is re-created, then data exist inside the pod is lost
+Stateful : If pod is re-created, old pod data still exist in new pod also.
+
+state = data (Database, filesystem ..etc)
+
+Q) how can we manage?
+A) Store data outside of Pod and link with it.
+   using Volumes.
+
+-> Deployment + PVC + PV 3 need to be created by Dev.
+-> StatefulSet : it creates pod, pv+pvc templates.
+
+*) (AWS)EBS, EFS, S3, RDS are mostly used compared to stateful.
+*) k8s is mostly used for pure deployments (stateless)
+
+Note:
+1. StatefulSet never creates any ReplicaSet internally.
+2. STS provides sticky identity (pod-0,pod-1,pod-2 ..etc)
+3. STS index-0 pod is only allowed to read/write, other pods only allowed for read.
+4. If we create new pod, copy from previous pod.
+5. We we scale down, then always delete last pod.
+6. STS creates POd with PVC, but not pv.
