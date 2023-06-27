@@ -1,0 +1,34 @@
+
+Date : 27-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+----------------------
+
+Try these incase of any issue:
+minikube stop
+minikube delete
+docker system prune --all
+sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
+docker volume ls
+(if exist any delete)
+minikube start
+========================
+
+
+Deployment : Multiple Pods using one Deployment concept (Recreate, RollingUpdate)
+PV and PVC : Create a Volume, to access A Volume.
+StatefulSets: Pods + PVC (index based order, pod-0,pod-1,..etc)
+----------------------------------------------------
+DaemonSet : 1 Pod for 1 Node (default replication)
+Ex:
+3 Nodes, then 3 pods created in each node.
+If we add a new Node, then new Pod is auto scheduled.
+
+rolling updates= Updating to new version, by deleteing old pod one by one.
+	(Replacing new pods)
+----------------------------------------------------
+Note:
+1. Not for application deployment.
+2. To moniter things, CUP/mem, Storage, Log, Alters..etc
+------------------------------------------------------
+M = Megabytes (base10) and Mi=MebiBytes (base2)
