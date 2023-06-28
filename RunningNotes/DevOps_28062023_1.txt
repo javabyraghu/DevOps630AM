@@ -1,0 +1,42 @@
+
+
+Date : 28-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+-------------------
+*) Every worker node is a Machine(ex: OS Linux).
+*) That gets CPU and RAM allocated while creating.
+*) Every POD(Container) needs some CPU and RAM allocated to run.
+*) If we did not specify any limits for POD(Container)
+  one POD may use entire CPU and RAM.
+
+
+resources:
+  requests:
+     cpu: 0.1
+     memory: 1Gi
+  limits:
+    cpu: 0.5
+    memory: 2Gi
+==========================
+ResourceQuota: The max count of Resources in a namespace.
+> Max Pods, Max Vols, Max Services..etc
+> PVs are created outside of NS (So, they are not counted in RQ).
+https://kubernetes.io/docs/concepts/policy/resource-quotas/
+
+$ kubectl create ns production-abc
+
+$ kubectl get quota              [default namespace]
+$ kubectl get resourcequota
+
+$ kubectl get quota -n production-abc
+$ kubectl get resourcequota -n production-abc
+------------------------------------------------
+OOMKilled error (Out Of Memory Killed) - Solution : LimitRange
+imagepullbackoff : Logins/ Missing Image, Version issues.
+https://stackoverflow.com/questions/34848422/how-can-i-debug-imagepullbackoff
+
+Pending: ResourceQuota issue.
+
+LimitRange:
+https://kubernetes.io/docs/concepts/policy/limit-range/
