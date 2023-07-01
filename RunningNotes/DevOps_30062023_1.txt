@@ -1,0 +1,35 @@
+
+
+Date : 30-06-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+---------------------
+Autoscaling:
+  Creating new resource, when old resource is busy/fully used.
+
+HPA: Create a new pod/adjust the count, 
+	based on usage of pods(CPU Utilization).
+
+Ex: Deployment - replicas:2
+
+Pod-1 : 71%
+Pod-2 : 71%
+
+Condition: if existed pod usage is >70% then create a new pod
+Pod-3
+
+
+Vertical Scaling in k8s: Adding a new node (Worker node)
+Horizontal Scaling in k8s: Creating new pods (when existed Pod is busy).
+---------------------------------------------------------------
+Metrics Server: it is a daemon-service(DaemonSet)
+It runs on everynode and gets details, like CPU utilization, RAM details..etc
+
+To find supported versions:
+kubectl api-versions | grep autoscaling
+kubectl get crd
+# to install HPA supporting Configuration
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/crds/crd-autoscaler.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/v1.21.0/cluster-autoscaler/cloudprovider/aws/crd.yaml
+
+kubectl autoscale deployment nginx-deployment --cpu-percent=50 --min=1 --max=10
