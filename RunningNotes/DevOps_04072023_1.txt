@@ -1,0 +1,30 @@
+
+
+Date : 04-07-2023
+DevOps and AWS
+Mr. RAGHU (AshokIT)
+--------------------
+Q) Explain imagePullPolicy in Deployment?
+https://kubernetes.io/docs/concepts/containers/images/
+
+Q) What is the nodeport range in k8s?
+A) 30000-32767
+
+http://nodeIP:Port/java-web-app
+
+$ kubectl get po -o wide
+(find private IP of Node where Pod is running)
+then compare private IP in AWS and copy PublicIP
+
+$ kubectl get svc 
+find port mapping for NodePort
+
+http://13.233.100.241:30002/java-web-app
+
+http://13.233.100.241:30092/maven-web-app
+
+$ kubectl edit svc k8s-boot-live-service
+Modify selectors
+ version: v2
+
+http://13.233.100.241:30002/maven-web-app
